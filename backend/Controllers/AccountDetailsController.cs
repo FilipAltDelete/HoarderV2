@@ -40,6 +40,19 @@ namespace backend.Controllers
 
             return accountDetails;
         }
+        [HttpGet("{username}/{password}")]
+        public async Task<ActionResult<AccountDetails>> SignInAttempt(string username, string password)
+        {
+            //var accountDetails = await _context.AccountDetails.FindAsync(id);
+            var accountDetails = await _context.AccountDetails.Where(a => a.Username == username && a.Password == password).FirstAsync();
+
+            if (accountDetails == null)
+            {
+                return NotFound();
+            }
+
+            return accountDetails;
+        }
 
         // PUT: api/AccountDetails/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
