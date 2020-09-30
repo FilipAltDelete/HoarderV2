@@ -10,7 +10,7 @@ namespace HoarderApp.Views
         public SignedInContentPage(AccountDetails signedInUser )
         {
             InitializeComponent();
-            Welcome.Text = "Välkommen " + signedInUser.Username;
+            Welcome.Text = "Välkommen " + signedInUser.Username + "!";
         }
     }
 }

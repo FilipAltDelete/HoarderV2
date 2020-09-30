@@ -42,12 +42,12 @@ namespace HoarderApp.Views
                 await DisplayAlert("Login", "Login Success!", "Proceed");
                 GoToSignedIdContentPage(userFromDB);
 
+
             }
            
         }
         private void GoToSignedIdContentPage(AccountDetails signedInUser)
         {
-            //new NavigationPage(new ContentFormPage());
             Navigation.PushModalAsync(new SignedInContentPage(signedInUser));
         }
     }

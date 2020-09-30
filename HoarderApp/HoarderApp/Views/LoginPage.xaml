@@ -16,8 +16,6 @@
                 </OnIdiom>
             </StackLayout.Padding>
 
-            <ActivityIndicator x:Name="ActivitySpinner" Color="Red" IsRunning="True"/>
-
             <Label x:Name="Lb1_Username" Text="Username"/>
             <Entry x:Name="Entry_Username" Placeholder="Username"/>
             <Label x:Name="Lb1_Password" Text="Password"/>
