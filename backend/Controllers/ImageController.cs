@@ -24,7 +24,11 @@ namespace backend.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Image>>> GetImages()
         {
-            return await _context.Images.ToListAsync();
+            Byte[] b = System.IO.File.ReadAllBytes(@"Images/goat.jpg");   // You can use your own method over here.         
+            return File(b, "image/jpeg");
+
+
+            //return await _context.Images.ToListAsync();
         }
 
         // GET: api/Image/5

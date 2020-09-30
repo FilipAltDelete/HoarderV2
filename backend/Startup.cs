@@ -49,6 +49,7 @@ namespace backend
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors(CORSPolicy);
             //app.UseHttpsRedirection();
 
             app.UseRouting();
