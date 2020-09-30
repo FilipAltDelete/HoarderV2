@@ -7,8 +7,4 @@ namespace backend.Models
         public Item Item { get; set; }
         public string ImageURL { get; set; }
     }
-    public class ImageData
-    {
-        public string Image { get; set; }
-    }
 }
