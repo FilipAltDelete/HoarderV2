@@ -41,17 +41,28 @@ namespace backend.Controllers
             return accountDetails;
         }
         [HttpGet("{username}/{password}")]
-        public async Task<ActionResult<AccountDetails>> SignInAttempt(string username, string password)
+        public async Task<ActionResult<UserDTO>> SignInAttempt(string username, string password)
         {
             //var accountDetails = await _context.AccountDetails.FindAsync(id);
             var accountDetails = await _context.AccountDetails.Where(a => a.Username == username && a.Password == password).FirstAsync();
+            var userProfile = await _context.UserProfiles.Where(a => a.AccountDetailsId == accountDetails.Id).FirstAsync();
+            UserDTO userInDb = new UserDTO();
+
+            userInDb.Id = userProfile.Id;
+            userInDb.AccountDetailsId = accountDetails.Id;
+            userInDb.Username = userProfile.ProfileName;
+            userInDb.Email = accountDetails.Email;
+            userInDb.Contact = userProfile.Contact;
+            userInDb.Location = userProfile.Location;
+
+
 
             if (accountDetails == null)
             {
                 return NotFound();
             }
 
-            return accountDetails;
+            return userInDb;
         }
 
         // PUT: api/AccountDetails/5
