@@ -18,7 +18,6 @@ namespace HoarderApp.Views
         void Init()
         {
             //BackgroundColor = Constants.BackgroundColor;
-            ActivitySpinner.IsVisible = false;
             //loginicon.HeightRequest = Constants.LoginIconHeight;
 
             Entry_Username.Completed += (s, e) => Entry_Password.Focus();
@@ -28,10 +27,10 @@ namespace HoarderApp.Views
 
         async void SignInProcedure(object sender, EventArgs e)
         {
-            AccountDetails user = new AccountDetails(Entry_Username.Text, Entry_Password.Text);
+            Constants.user = new AccountDetails(Entry_Username.Text, Entry_Password.Text);
             RestService service = new RestService();
 
-            AccountDetails userFromDB = await service.SignIn(Constants.apiURL, user);
+            AccountDetails userFromDB = await service.SignIn(Constants.apiURL, Constants.user);
 
             if(userFromDB == null)
             {

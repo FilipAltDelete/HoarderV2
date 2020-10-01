@@ -3,52 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="HoarderApp.Views.SignedInContentPage">
 
-    <StackLayout>
-        <Frame BackgroundColor="#2196F3" Padding="49" CornerRadius="0">
-            <Label Text="Content Page" HorizontalTextAlignment="Center" TextColor="White" FontSize="36" />
+    <StackLayout BackgroundColor="Black">
+        <Frame BackgroundColor="#6C4190" Padding="49" CornerRadius="0">
+            <Label x:Name="Welcome" HorizontalTextAlignment="Center" TextColor="White" FontSize="30" />
         </Frame>
-        <Label x:Name="Welcome" FontSize="Title" Padding="30,10,30,10" />
-        <Label Text="some content to fill the page with" FontSize="16" Padding="30,0,30,20" />
-        <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
-            <Label FontSize="16" >
-                <Label.FormattedText>
-                    <FormattedString>
-                        <FormattedString.Spans>
-                            <Span Text="Googla på:  " />
-                            <Span Text="https://www.google.com" FontAttributes="Bold" />
-                        </FormattedString.Spans>
-                    </FormattedString>
-                </Label.FormattedText>
-            </Label>
-        </Frame>
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100"/>
-            <ColumnDefinition Width="101"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="Auto"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="200"/>
-            <RowDefinition Height="10"/>
-            </Grid.RowDefinitions>
-        <BoxView Color="LightGray"/>
-        <Label Text="Column 0"
-               HorizontalOptions="Center"
-               VerticalOptions="Center"/>
-        <BoxView Grid.Column="1" Color="LightBlue"/>
-        <Label Grid.Column="1" Text="Column 1"
-               HorizontalOptions="Center"
-               VerticalOptions="Center"/>
-        <BoxView Grid.Column="2" Color="LightBlue"/>
-        <Label Grid.Column="2" Text="Column 1"
-               HorizontalOptions="Center"
-               VerticalOptions="Center"/>
+        <Button x:Name="collectionButton" Clicked="GoToCollection" Text="My Collections" FontSize="30" BackgroundColor="#312e31" TextColor="White" HeightRequest="100"  />
+        <Button Text="Searh for Users" FontSize="30" BackgroundColor="#312e31" TextColor="White" HeightRequest="100"></Button>
+        <Button Text="Account Settings" FontSize="30" BackgroundColor="#312e31" TextColor="White" HeightRequest="100"></Button>
+        <Button Text="Kuken står!" FontSize="30" BackgroundColor="#312e31" TextColor="White" HeightRequest="100"></Button>
         
-        </Grid>
-
-            <Frame BackgroundColor="#2196F3" Padding="50,10,40,30" CornerRadius="0">
-            <Label Text="Kuken Står!" HorizontalTextAlignment="Center" TextColor="White" FontSize="36" />
-        </Frame>
     </StackLayout>
 </ContentPage>
