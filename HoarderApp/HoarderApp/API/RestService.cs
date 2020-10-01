@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Diagnostics;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -10,6 +12,7 @@ namespace HoarderApp.API
     public class RestService
     {
         HttpClient _client;
+        
 
         public RestService()
         {
@@ -18,10 +21,12 @@ namespace HoarderApp.API
 
         public async Task<AccountDetails> SignIn(string uri, AccountDetails attempt)
         {
+            string debugURL = "http://10.0.0.6:5000/api/accountdetails/Petar/123";
             AccountDetails userInDb = null;
             try
             {
                 HttpResponseMessage response = await _client.GetAsync(uri + "AccountDetails/" + attempt.Username + "/" + attempt.Password);
+                //HttpResponseMessage response = await _client.GetAsync(debugURL);
                 if (response.IsSuccessStatusCode)
                 {
                     string content = await response.Content.ReadAsStringAsync();
@@ -30,6 +35,25 @@ namespace HoarderApp.API
             }
             catch (Exception ex) { Debug.WriteLine("\tERROR {0}", ex.Message); }
             return userInDb;
+        }
+
+        public async Task<List<CollectionDTO>> GetCollections(string uri, AccountDetails user)
+        {
+
+            List<CollectionDTO> col = new List<CollectionDTO>();
+            try
+            {
+                HttpResponseMessage response = await _client.GetAsync(uri + "UserCollections/" + user.Id);
+                if (response.IsSuccessStatusCode)
+                {
+                    string content = await response.Content.ReadAsStringAsync();
+                    col = JsonConvert.DeserializeObject<List<CollectionDTO>>(content);
+
+                }
+            }
+            catch (Exception ex) { Debug.WriteLine("\tERROR {0}", ex.Message); }
+            return col;
+
         }
 
         public async Task<AccountDetails> GetUserFromDB(string uri)

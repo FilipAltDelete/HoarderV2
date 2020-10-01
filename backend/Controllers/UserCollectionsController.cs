@@ -27,11 +27,27 @@ namespace backend.Controllers
             return await _context.UserCollections.ToListAsync();
         }
 
-        // GET: api/UserCollections/5
+        /*
         [HttpGet("{id}")]
         public async Task<ActionResult<UserCollections>> GetUserCollections(int id)
         {
             var userCollections = await _context.UserCollections.FindAsync(id);
+
+            if (userCollections == null)
+            {
+                return NotFound();
+            }
+
+            return userCollections;
+        }
+        */
+
+        // GET: api/UserCollections/5
+        [HttpGet("{userId}")]
+        public async Task<ActionResult<IEnumerable<UserCollections>>> GetCollectionsOnUserId(int userId)
+        {
+            //var userCollections = await _context.UserCollections.FindAsync(userId);
+            var userCollections = await _context.UserCollections.Where(a => a.UserProfileId == userId).ToListAsync();
 
             if (userCollections == null)
             {
