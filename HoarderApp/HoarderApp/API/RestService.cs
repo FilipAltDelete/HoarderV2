@@ -21,12 +21,13 @@ namespace HoarderApp.API
 
         public async Task<AccountDetails> SignIn(string uri, AccountDetails attempt)
         {
-            string debugURL = "http://10.0.0.6:5000/api/accountdetails/Petar/123";
+            //string debugURL = "http://10.0.0.6:5000/api/accountdetails/Petar/123";
+            string localUri = Constants.apiURLLocal;
             AccountDetails userInDb = null;
             try
             {
-                HttpResponseMessage response = await _client.GetAsync(uri + "AccountDetails/" + attempt.Username + "/" + attempt.Password);
-                //HttpResponseMessage response = await _client.GetAsync(debugURL);
+                //HttpResponseMessage response = await _client.GetAsync(uri + "AccountDetails/" + attempt.Username + "/" + attempt.Password);
+                HttpResponseMessage response = await _client.GetAsync(localUri + "AccountDetails/" + attempt.Username + "/" + attempt.Password);
                 if (response.IsSuccessStatusCode)
                 {
                     string content = await response.Content.ReadAsStringAsync();
@@ -39,11 +40,12 @@ namespace HoarderApp.API
 
         public async Task<List<CollectionDTO>> GetCollections(string uri, AccountDetails user)
         {
+            string localUri = Constants.apiURLLocal;
 
             List<CollectionDTO> col = new List<CollectionDTO>();
             try
             {
-                HttpResponseMessage response = await _client.GetAsync(uri + "UserCollections/" + user.Id);
+                HttpResponseMessage response = await _client.GetAsync(localUri + "UserCollections/" + user.Id);
                 if (response.IsSuccessStatusCode)
                 {
                     string content = await response.Content.ReadAsStringAsync();

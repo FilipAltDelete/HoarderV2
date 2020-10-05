@@ -13,7 +13,15 @@ namespace HoarderApp.Models
         public bool IsShared { get; set; }
         [JsonProperty("userProfileId")]
         public int UserProfileId { get; set; }
+
+        public override string ToString()
+        {
+            return CollectionName;
+        }
+
+
     }
+
 
     public class Collection
     {

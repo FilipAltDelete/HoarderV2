@@ -19,9 +19,17 @@ namespace HoarderApp.Views
         async void GetCollectionsFromDB(AccountDetails user)
         {
             RestService service = new RestService();
-            var collections = await service.GetCollections(Constants.apiURL, user);
-
+            List<CollectionDTO> collections = await service.GetCollections(Constants.apiURL, user);
+            BindingContext = collections;
             
-        } 
+        }
+
+        async void ClickedOnCollection(object sender, EventArgs e)
+        {
+            var myListView = (ListView)sender;
+            var myItem = myListView.SelectedItem;
+
+            //await Navigation.PushAsync(new CollectionPage(User));
+        }
     }
 }

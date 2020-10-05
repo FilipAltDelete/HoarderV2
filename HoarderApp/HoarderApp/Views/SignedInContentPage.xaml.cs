@@ -21,8 +21,7 @@ namespace HoarderApp.Views
 
         async void GoToCollection(object sender, EventArgs e)
         {
-            //CollectionPage CollectionPage ();
-            await Navigation.PushModalAsync(new CollectionPage(User) );
+            await Navigation.PushAsync(new CollectionPage(User) );
         }
     }
 }
