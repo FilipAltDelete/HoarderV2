@@ -39,15 +39,16 @@ namespace HoarderApp.Views
             else
             {
                 await DisplayAlert("Login", "Login Success!", "Proceed");
-                GoToSignedIdContentPage(userFromDB);
+                GoToSignedInContentPage(userFromDB);
 
 
             }
            
         }
-        private void GoToSignedIdContentPage(AccountDetails signedInUser)
+        private void GoToSignedInContentPage(AccountDetails signedInUser)
         {
-            Navigation.PushModalAsync(new SignedInContentPage(signedInUser));
+            Application.Current.MainPage = new NavigationPage(new SignedInContentPage(signedInUser));
+            //Navigation.PushModalAsync(new SignedInContentPage(signedInUser));
         }
     }
 }
