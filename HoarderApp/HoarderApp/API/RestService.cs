@@ -58,6 +58,27 @@ namespace HoarderApp.API
 
         }
 
+        public async Task<List<ItemDTO>>GetItemsFromDB(CollectionDTO collection)
+        {
+            string localUri = Constants.apiURLLocal;
+
+            List<ItemDTO> col = new List<ItemDTO>();
+            try
+            {
+                
+                HttpResponseMessage response = await _client.GetAsync(localUri + "Item/collection/" + collection.Id);
+                if (response.IsSuccessStatusCode)
+                {
+                    string content = await response.Content.ReadAsStringAsync();
+                    col = JsonConvert.DeserializeObject<List<ItemDTO>>(content);
+
+                }
+                
+            }
+            catch (Exception ex) { Debug.WriteLine("\tERROR {0}", ex.Message); }
+            return col;
+        }
+
         public async Task<AccountDetails> GetUserFromDB(string uri)
         {
             AccountDetails userInDb = null;
