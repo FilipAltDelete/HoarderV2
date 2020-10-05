@@ -79,6 +79,27 @@ namespace HoarderApp.API
             return items;
         }
 
+        public async Task<List<ImageDTO>> GetImages(ItemDTO item)
+        {
+            string localUri = Constants.apiURLLocal;
+
+            List<ImageDTO> items = new List<ImageDTO>();
+            try
+            {
+
+                HttpResponseMessage response = await _client.GetAsync(localUri + "Image/itemid/" + item.Id);
+                if (response.IsSuccessStatusCode)
+                {
+                    string content = await response.Content.ReadAsStringAsync();
+                    items = JsonConvert.DeserializeObject<List<ImageDTO>>(content);
+
+                }
+
+            }
+            catch (Exception ex) { Debug.WriteLine("\tERROR {0}", ex.Message); }
+            return items;
+        }
+
         public async Task<AccountDetails> GetUserFromDB(string uri)
         {
             AccountDetails userInDb = null;

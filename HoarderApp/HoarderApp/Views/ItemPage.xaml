@@ -9,5 +9,5 @@
                  Priority="0" />
 </ContentPage.ToolbarItems>
 
-    <ListView x:Name="ItemListview" BackgroundColor="gray" SeparatorColor="Black"></ListView>
+    <ListView x:Name="ItemListview" BackgroundColor="gray" ItemTapped="OnClickedItem" SeparatorColor="Black"></ListView>
 </ContentPage>
