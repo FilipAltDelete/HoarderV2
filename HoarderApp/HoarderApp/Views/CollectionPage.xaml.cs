@@ -27,9 +27,10 @@ namespace HoarderApp.Views
         async void ClickedOnCollection(object sender, EventArgs e)
         {
             var myListView = (ListView)sender;
-            var myItem = myListView.SelectedItem;
+            CollectionDTO myItem = (CollectionDTO)myListView.SelectedItem;
+            
 
-            //await Navigation.PushAsync(new CollectionPage(User));
+            await Navigation.PushAsync(new ItemPage(myItem));
         }
     }
 }
