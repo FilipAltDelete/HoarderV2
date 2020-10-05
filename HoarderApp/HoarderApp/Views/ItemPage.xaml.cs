@@ -17,6 +17,7 @@ namespace HoarderApp.Views
 
         async void GetItemsDB(CollectionDTO collection)
         {
+            Title = collection.CollectionName;
             RestService service = new RestService();
             List<ItemDTO> items = await service.GetItemsFromDB(collection);
             ItemListview.ItemsSource = items;

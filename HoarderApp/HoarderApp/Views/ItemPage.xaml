@@ -2,5 +2,12 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="HoarderApp.Views.ItemPage">
+
+    <ContentPage.ToolbarItems>
+    <ToolbarItem Text="Add+"
+                 Order="Primary"
+                 Priority="0" />
+</ContentPage.ToolbarItems>
+
     <ListView x:Name="ItemListview" BackgroundColor="gray" SeparatorColor="Black"></ListView>
 </ContentPage>

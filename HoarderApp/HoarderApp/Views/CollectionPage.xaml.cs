@@ -12,6 +12,7 @@ namespace HoarderApp.Views
         {
             InitializeComponent();
             GetCollectionsFromDB(User);
+            Title = "Collections";
             
 
         }
@@ -21,6 +22,7 @@ namespace HoarderApp.Views
             RestService service = new RestService();
             List<CollectionDTO> collections = await service.GetCollections(Constants.apiURL, user);
             BindingContext = collections;
+
             
         }
 
