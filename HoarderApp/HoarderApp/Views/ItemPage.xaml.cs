@@ -24,5 +24,14 @@ namespace HoarderApp.Views
             
             BindingContext = items;
         }
+
+        async void OnClickedItem(object sender, EventArgs e)
+        {
+            var myListView = (ListView)sender;
+            ItemDTO myItem = (ItemDTO)myListView.SelectedItem;
+
+
+            await Navigation.PushAsync(new ItemContentPage(myItem));
+        }
     }
 }
