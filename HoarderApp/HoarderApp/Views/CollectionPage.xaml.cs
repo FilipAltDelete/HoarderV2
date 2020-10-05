@@ -12,7 +12,7 @@ namespace HoarderApp.Views
         {
             InitializeComponent();
             GetCollectionsFromDB(User);
-
+            
 
         }
 

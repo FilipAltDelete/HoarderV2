@@ -62,7 +62,7 @@ namespace HoarderApp.API
         {
             string localUri = Constants.apiURLLocal;
 
-            List<ItemDTO> col = new List<ItemDTO>();
+            List<ItemDTO> items = new List<ItemDTO>();
             try
             {
                 
@@ -70,13 +70,13 @@ namespace HoarderApp.API
                 if (response.IsSuccessStatusCode)
                 {
                     string content = await response.Content.ReadAsStringAsync();
-                    col = JsonConvert.DeserializeObject<List<ItemDTO>>(content);
+                    items = JsonConvert.DeserializeObject<List<ItemDTO>>(content);
 
                 }
                 
             }
             catch (Exception ex) { Debug.WriteLine("\tERROR {0}", ex.Message); }
-            return col;
+            return items;
         }
 
         public async Task<AccountDetails> GetUserFromDB(string uri)
