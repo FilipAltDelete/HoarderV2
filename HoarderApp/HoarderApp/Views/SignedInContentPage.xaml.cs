@@ -14,7 +14,8 @@ namespace HoarderApp.Views
         {
             InitializeComponent();
             User = signedInUser;
-            Welcome.Text = signedInUser.Username;
+            Title = signedInUser.Username;
+            //Welcome.Text = signedInUser.Username;
         }
 
 

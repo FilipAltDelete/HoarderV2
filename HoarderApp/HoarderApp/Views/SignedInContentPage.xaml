@@ -2,15 +2,19 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="HoarderApp.Views.SignedInContentPage">
+    
+    <ContentPage.ToolbarItems>
+    <ToolbarItem Text="Sign out"
+                 Order="Primary"
+                 Priority="0" />
+</ContentPage.ToolbarItems>
 
     <StackLayout BackgroundColor="Black">
-        <Frame BackgroundColor="#6C4190" Padding="49" CornerRadius="0">
-            <Label x:Name="Welcome" HorizontalTextAlignment="Center" TextColor="White" FontSize="30" />
-        </Frame>
+        
         <Button x:Name="collectionButton" Clicked="GoToCollection" Text="My Collections" FontSize="30" BackgroundColor="#312e31" TextColor="White" HeightRequest="100"  />
         <Button Text="Searh for Users" FontSize="30" BackgroundColor="#312e31" TextColor="White" HeightRequest="100"></Button>
         <Button Text="Account Settings" FontSize="30" BackgroundColor="#312e31" TextColor="White" HeightRequest="100"></Button>
-        <Button Text="Kuken står!" FontSize="30" BackgroundColor="#312e31" TextColor="White" HeightRequest="100"></Button>
+        <Button Text="Hej och hå" FontSize="30" BackgroundColor="#312e31" TextColor="White" HeightRequest="100"></Button>
         
     </StackLayout>
 </ContentPage>
