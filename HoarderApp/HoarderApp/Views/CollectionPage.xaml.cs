@@ -8,8 +8,10 @@ namespace HoarderApp.Views
 {
     public partial class CollectionPage : ContentPage
     {
+        AccountDetails SignedInUser;
         public CollectionPage(AccountDetails User)
         {
+            SignedInUser = User;
             InitializeComponent();
             GetCollectionsFromDB(User);
             Title = "Collections";
@@ -29,10 +31,16 @@ namespace HoarderApp.Views
         async void ClickedOnCollection(object sender, EventArgs e)
         {
             var myListView = (ListView)sender;
-            CollectionDTO myItem = (CollectionDTO)myListView.SelectedItem;
+            CollectionDTO collection = (CollectionDTO)myListView.SelectedItem;
             
 
-            await Navigation.PushAsync(new ItemPage(myItem));
+            await Navigation.PushAsync(new ItemPage(collection, SignedInUser));
+        }
+
+        async void AddNewCollection(object sender, EventArgs e)
+        {
+            //signedInUser = SignedInUser;
+            await Navigation.PushAsync(new CreateCollectionPage(SignedInUser));
         }
     }
 }
