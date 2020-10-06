@@ -8,9 +8,12 @@ namespace HoarderApp.Views
 {
     public partial class ItemPage : ContentPage
     {
-        public ItemPage(CollectionDTO collection)
+        AccountDetails SignedInUser;
+        CollectionDTO CurrentCollection;
+        public ItemPage(CollectionDTO collection, AccountDetails signedInUser)
         {
-
+            SignedInUser = signedInUser;
+            CurrentCollection = collection;
             InitializeComponent();
             GetItemsDB(collection);
         }
@@ -31,7 +34,12 @@ namespace HoarderApp.Views
             ItemDTO myItem = (ItemDTO)myListView.SelectedItem;
 
 
-            await Navigation.PushAsync(new ItemContentPage(myItem));
+            await Navigation.PushAsync(new ItemContentPage(myItem, CurrentCollection, SignedInUser));
+        }
+
+        async void AddNewItem(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new CreateItemPage(SignedInUser, CurrentCollection));
         }
     }
 }

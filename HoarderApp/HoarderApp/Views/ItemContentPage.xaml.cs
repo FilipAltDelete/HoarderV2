@@ -8,20 +8,25 @@ namespace HoarderApp.Views
 {
     public partial class ItemContentPage : ContentPage
     {
-        //List<string> images = new List<string>();
-        public ItemContentPage(ItemDTO item)
+        CollectionDTO CurrentCollection;
+        ItemDTO CurrentItem;
+        AccountDetails SignedInUser;
+        public ItemContentPage(ItemDTO currentItem, CollectionDTO currentCollection, AccountDetails signedInUser)
         {
+
+            SignedInUser = signedInUser;
+            CurrentCollection = currentCollection;
+            CurrentItem = currentItem;
             InitializeComponent();
-            ItemName.Text = item.ItemName;
-            ItemDesc.Text = item.Description;
-            GetImagesFromDB(item);
+            ItemName.Text = currentItem.ItemName;
+            ItemDesc.Text = currentItem.Description;
+            GetImagesFromDB(currentItem);
         }
 
-        async void GetImagesFromDB(ItemDTO item)
+        async void GetImagesFromDB(ItemDTO currentItem)
         {
             RestService service = new RestService();
-            List<string> images = await service.GetImages(item);
-            //images = await service.GetImages(item);
+            List<string> images = await service.GetImages(currentItem);
 
             if(images.Count == 0)
             {
@@ -29,10 +34,15 @@ namespace HoarderApp.Views
             }
             else
             {
-                ItemImage.Source = images[1];
+                ItemImage.Source = images[0];
 
             }
-
         }
+
+        async void EditItem(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new EditItemPage(CurrentItem, CurrentCollection, SignedInUser));
+        }
+
     }
 }

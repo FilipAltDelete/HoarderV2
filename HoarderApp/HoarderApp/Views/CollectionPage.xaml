@@ -5,7 +5,8 @@
      <ContentPage.ToolbarItems>
     <ToolbarItem Text="Add+"
                  Order="Primary"
-                 Priority="0" />
+                 Priority="0"
+                 Clicked="AddNewCollection"/>
 </ContentPage.ToolbarItems>
 
     <ListView BackgroundColor="gray" SeparatorColor="Black" ItemTapped="ClickedOnCollection" ItemsSource="{Binding}"></ListView>

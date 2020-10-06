@@ -6,7 +6,8 @@
     <ContentPage.ToolbarItems>
     <ToolbarItem Text="Add+"
                  Order="Primary"
-                 Priority="0" />
+                 Priority="0"
+                 Clicked="AddNewItem"/>
 </ContentPage.ToolbarItems>
 
     <ListView x:Name="ItemListview" BackgroundColor="gray" ItemTapped="OnClickedItem" SeparatorColor="Black"></ListView>
