@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Diagnostics;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -10,6 +12,7 @@ namespace HoarderApp.API
     public class RestService
     {
         HttpClient _client;
+        
 
         public RestService()
         {
@@ -18,10 +21,13 @@ namespace HoarderApp.API
 
         public async Task<AccountDetails> SignIn(string uri, AccountDetails attempt)
         {
+            //string debugURL = "http://10.0.0.6:5000/api/accountdetails/Petar/123";
+            string localUri = Constants.apiURLLocal;
             AccountDetails userInDb = null;
             try
             {
-                HttpResponseMessage response = await _client.GetAsync(uri + "AccountDetails/" + attempt.Username + "/" + attempt.Password);
+                //HttpResponseMessage response = await _client.GetAsync(uri + "AccountDetails/" + attempt.Username + "/" + attempt.Password);
+                HttpResponseMessage response = await _client.GetAsync(localUri + "AccountDetails/" + attempt.Username + "/" + attempt.Password);
                 if (response.IsSuccessStatusCode)
                 {
                     string content = await response.Content.ReadAsStringAsync();
@@ -30,6 +36,69 @@ namespace HoarderApp.API
             }
             catch (Exception ex) { Debug.WriteLine("\tERROR {0}", ex.Message); }
             return userInDb;
+        }
+
+        public async Task<List<CollectionDTO>> GetCollections(string uri, AccountDetails user)
+        {
+            string localUri = Constants.apiURLLocal;
+
+            List<CollectionDTO> col = new List<CollectionDTO>();
+            try
+            {
+                HttpResponseMessage response = await _client.GetAsync(localUri + "UserCollections/" + user.Id);
+                if (response.IsSuccessStatusCode)
+                {
+                    string content = await response.Content.ReadAsStringAsync();
+                    col = JsonConvert.DeserializeObject<List<CollectionDTO>>(content);
+
+                }
+            }
+            catch (Exception ex) { Debug.WriteLine("\tERROR {0}", ex.Message); }
+            return col;
+
+        }
+
+        public async Task<List<ItemDTO>>GetItemsFromDB(CollectionDTO collection)
+        {
+            string localUri = Constants.apiURLLocal;
+
+            List<ItemDTO> items = new List<ItemDTO>();
+            try
+            {
+                
+                HttpResponseMessage response = await _client.GetAsync(localUri + "Item/collection/" + collection.Id);
+                if (response.IsSuccessStatusCode)
+                {
+                    string content = await response.Content.ReadAsStringAsync();
+                    items = JsonConvert.DeserializeObject<List<ItemDTO>>(content);
+
+                }
+                
+            }
+            catch (Exception ex) { Debug.WriteLine("\tERROR {0}", ex.Message); }
+            return items;
+        }
+
+        public async Task<List<string>> GetImages(ItemDTO item)
+        {
+            string localUri = Constants.apiURLLocal;
+
+            List<string> items = new List<string>();
+            try
+            {
+
+                HttpResponseMessage response = await _client.GetAsync(localUri + "Image/Item/" + item.Id);
+                if (response.IsSuccessStatusCode)
+                {
+                    string content = await response.Content.ReadAsStringAsync();
+                    items = JsonConvert.DeserializeObject<List<string>>(content);
+
+                    Console.WriteLine("asdasd");
+                }
+
+            }
+            catch (Exception ex) { Debug.WriteLine("\tERROR {0}", ex.Message); }
+            return items;
         }
 
         public async Task<AccountDetails> GetUserFromDB(string uri)

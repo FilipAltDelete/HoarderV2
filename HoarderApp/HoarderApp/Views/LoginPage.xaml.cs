@@ -18,7 +18,6 @@ namespace HoarderApp.Views
         void Init()
         {
             //BackgroundColor = Constants.BackgroundColor;
-            ActivitySpinner.IsVisible = false;
             //loginicon.HeightRequest = Constants.LoginIconHeight;
 
             Entry_Username.Completed += (s, e) => Entry_Password.Focus();
@@ -28,10 +27,10 @@ namespace HoarderApp.Views
 
         async void SignInProcedure(object sender, EventArgs e)
         {
-            AccountDetails user = new AccountDetails(Entry_Username.Text, Entry_Password.Text);
+            Constants.user = new AccountDetails(Entry_Username.Text, Entry_Password.Text);
             RestService service = new RestService();
 
-            AccountDetails userFromDB = await service.SignIn(Constants.apiURL, user);
+            AccountDetails userFromDB = await service.SignIn(Constants.apiURL, Constants.user);
 
             if(userFromDB == null)
             {
@@ -40,13 +39,16 @@ namespace HoarderApp.Views
             else
             {
                 await DisplayAlert("Login", "Login Success!", "Proceed");
+                GoToSignedInContentPage(userFromDB);
+
+
             }
            
         }
-        private void GoToContentPage()
+        private void GoToSignedInContentPage(AccountDetails signedInUser)
         {
-            //new NavigationPage(new ContentFormPage());
-            //Navigation.PushAsync(new ContentFormPage());
+            Application.Current.MainPage = new NavigationPage(new SignedInContentPage(signedInUser));
+            //Navigation.PushModalAsync(new SignedInContentPage(signedInUser));
         }
     }
 }

@@ -28,10 +28,12 @@ namespace backend.Controllers
         }
 
         // GET: api/Item/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Item>> GetItem(int id)
+        [HttpGet("collection/{id}")]
+        public async Task<ActionResult<IEnumerable<Item>>> GetItem(int id)
         {
-            var item = await _context.Items.FindAsync(id);
+            //var item = await _context.Items.FindAsync(id);
+
+            var item = await _context.Items.Where(a => a.UserCollectionsId == id).ToListAsync();
 
             if (item == null)
             {
