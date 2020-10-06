@@ -74,6 +74,27 @@ namespace backend.Controllers
             return File(b, "image/jpeg");
         }
 
+        [HttpGet("Item/{itemId}")]
+        public async Task<ActionResult<List<string>>> GetImageFromItemId(int itemId)
+        {
+            //var image = await _context.Images.FindAsync(Id);
+            List<Image> imageDataFromDB = await _context.Images.Where(i => i.ItemId == itemId).ToListAsync();
+
+            //Byte[] b = System.IO.File.ReadAllBytes(image.ImageURL);
+            if (imageDataFromDB == null)
+            {
+                return NotFound();
+            }
+            List<string> imageUrls = new List<string>();
+            //http://localhost:5000/api/Image/itemid/1
+            foreach (var image in imageDataFromDB)
+            {
+                imageUrls.Add("http://localhost:5000/api/Image/itemid/" + image.ItemId);
+            }
+
+            return imageUrls;
+        }
+
 
         // POST: api/Image
         // To protect from overposting attacks, enable the specific properties you want to bind to, for

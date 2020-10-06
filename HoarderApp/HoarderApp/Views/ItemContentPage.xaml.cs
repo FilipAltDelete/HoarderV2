@@ -19,8 +19,8 @@ namespace HoarderApp.Views
         async void GetImagesFromDB(ItemDTO item)
         {
             RestService service = new RestService();
-            List<ImageDTO> images = await service.GetImages(item);
-            ItemImage.Source = images[0].ImageURL;
+            List<string> images = await service.GetImages(item);
+            ItemImage.Source = images[0];
 
 
 
