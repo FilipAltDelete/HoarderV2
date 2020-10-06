@@ -7,11 +7,11 @@ namespace HoarderApp.Views
 {
     public partial class EditItemPage : ContentPage
     {
-        ItemDTO CurrentItem;
+        Item CurrentItem;
         CollectionDTO CurrentCollection;
         AccountDetails SignedInUser;
 
-        public EditItemPage(ItemDTO currentItem, CollectionDTO currentCollection, AccountDetails signedInUser)
+        public EditItemPage(Item currentItem, CollectionDTO currentCollection, AccountDetails signedInUser)
         {
             SignedInUser = signedInUser;
             CurrentItem = currentItem;

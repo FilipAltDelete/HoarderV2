@@ -22,16 +22,31 @@ namespace HoarderApp.Views
         {
             Title = collection.CollectionName;
             RestService service = new RestService();
-            List<ItemDTO> items = await service.GetItemsFromDB(collection);
+            List<ItemDTO> DTOitems = await service.GetItemsFromDB(collection);
+            List<string> imageURLS = await service.GetAllImages(collection);
+            List<Item> items = new List<Item>();
+            int i = 0;
+            foreach(var item in DTOitems)
+            {
+                Item it = new Item();
+                it.Id = item.Id;
+                it.ItemName = item.ItemName;
+                it.Description = item.Description;
+                it.AuctionURL = item.AuctionURL;
+                it.ForSale = item.ForSale;
+                it.ImageURL = imageURLS[i];
+                items.Add(it);
+                i++;
+            }
+
             ItemListview.ItemsSource = items;
-            
             BindingContext = items;
         }
 
         async void OnClickedItem(object sender, EventArgs e)
         {
             var myListView = (ListView)sender;
-            ItemDTO myItem = (ItemDTO)myListView.SelectedItem;
+            Item myItem = (Item)myListView.SelectedItem;
 
 
             await Navigation.PushAsync(new ItemContentPage(myItem, CurrentCollection, SignedInUser));
