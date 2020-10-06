@@ -3,11 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="HoarderApp.Views.ItemContentPage">
     <StackLayout BackgroundColor="gray">
-        <Label Text="Title"></Label>
+        <Image x:Name="ItemImage" HeightRequest="600"></Image>
+
         <Label x:Name="ItemName" Padding="3"></Label>
-        <Label Text="Description"></Label>
         <Label x:Name="ItemDesc" Padding="3"></Label>
-        <Image x:Name="ItemImage"></Image>
 
     </StackLayout>
 </ContentPage>

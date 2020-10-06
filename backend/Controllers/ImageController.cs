@@ -89,7 +89,7 @@ namespace backend.Controllers
             //http://localhost:5000/api/Image/itemid/1
             foreach (var image in imageDataFromDB)
             {
-                imageUrls.Add("http://localhost:5000/api/Image/itemid/" + image.ItemId);
+                imageUrls.Add("http://localhost:5000/api/Image/" + image.ItemId + "/" + image.Id);
             }
 
             return imageUrls;

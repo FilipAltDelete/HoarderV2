@@ -93,7 +93,6 @@ namespace HoarderApp.API
                     string content = await response.Content.ReadAsStringAsync();
                     items = JsonConvert.DeserializeObject<List<string>>(content);
 
-                    Console.WriteLine("asdasd");
                 }
 
             }

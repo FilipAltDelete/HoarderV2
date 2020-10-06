@@ -8,6 +8,7 @@ namespace HoarderApp.Views
 {
     public partial class ItemContentPage : ContentPage
     {
+        //List<string> images = new List<string>();
         public ItemContentPage(ItemDTO item)
         {
             InitializeComponent();
@@ -20,9 +21,17 @@ namespace HoarderApp.Views
         {
             RestService service = new RestService();
             List<string> images = await service.GetImages(item);
-            ItemImage.Source = images[0];
+            //images = await service.GetImages(item);
 
+            if(images.Count == 0)
+            {
+                ItemImage.Source = "https://www.gardeningknowhow.com/wp-content/uploads/2010/02/iStock-524907632.jpg";
+            }
+            else
+            {
+                ItemImage.Source = images[1];
 
+            }
 
         }
     }
