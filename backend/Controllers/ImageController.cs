@@ -59,6 +59,8 @@ namespace backend.Controllers
 
             return File(b, "image/jpeg");
         }
+
+
         // GET: api/Image/5
         [HttpGet("{Id}")]
         public async Task<ActionResult<Image>> GetImage(int Id)
@@ -72,6 +74,34 @@ namespace backend.Controllers
             }
 
             return File(b, "image/jpeg");
+        }
+
+
+        [HttpGet("collectionId/{colId}")]
+        public async Task<ActionResult<List<string>>> GetImagesFromCollection(int colId)
+        {
+            List<Item> itemDataFromDB = await _context.Items.Where(i => i.UserCollectionsId == colId).ToListAsync();
+            List<Image> imageDataFromDB = new List<Image>();
+            List<string> imageURLS = new List<string>();
+
+            foreach (var item in itemDataFromDB)
+            {
+                Image im = new Image();
+
+                im = await _context.Images.Where(i => i.ItemId == item.Id).FirstOrDefaultAsync();
+                imageDataFromDB.Add(im);
+                Console.WriteLine("\nDEBUG ITEM  : " + item.ItemName);
+                Console.WriteLine("\nDEBUG IMAGE : " + im.Id);
+            }
+            Console.WriteLine();
+            foreach (var image in imageDataFromDB)
+            {
+
+                imageURLS.Add("http://localhost:5000/api/Image/" + image.ItemId + "/" + image.Id);
+            }
+
+
+            return imageURLS;
         }
 
         [HttpGet("Item/{itemId}")]

@@ -9,9 +9,9 @@ namespace HoarderApp.Views
     public partial class ItemContentPage : ContentPage
     {
         CollectionDTO CurrentCollection;
-        ItemDTO CurrentItem;
+        Item CurrentItem;
         AccountDetails SignedInUser;
-        public ItemContentPage(ItemDTO currentItem, CollectionDTO currentCollection, AccountDetails signedInUser)
+        public ItemContentPage(Item currentItem, CollectionDTO currentCollection, AccountDetails signedInUser)
         {
 
             SignedInUser = signedInUser;
@@ -23,7 +23,7 @@ namespace HoarderApp.Views
             GetImagesFromDB(currentItem);
         }
 
-        async void GetImagesFromDB(ItemDTO currentItem)
+        async void GetImagesFromDB(Item currentItem)
         {
             RestService service = new RestService();
             List<string> images = await service.GetImages(currentItem);

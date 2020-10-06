@@ -10,5 +10,45 @@
                  Clicked="AddNewItem"/>
 </ContentPage.ToolbarItems>
 
+    <ListView x:Name="ItemListview" ItemsSource="{Binding items}" BackgroundColor="gray" ItemTapped="OnClickedItem" SeparatorColor="Black">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <Grid Padding="3" RowSpacing="3" ColumnSpacing="3">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Image
+
+                            HeightRequest="35"
+                            HorizontalOptions="CenterAndExpand"
+                            VerticalOptions="CenterAndExpand"
+                            Aspect="AspectFill"
+                            WidthRequest="37"
+                            Grid.RowSpan="2"
+                            Source="{Binding ImageURL}"/>
+                        <Label Grid.Column="1"
+                               Text="{Binding ItemName}"
+                               VerticalOptions="End"/>
+
+
+
+                    </Grid>
+
+
+                 </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+
+    </ListView>
+
+    <!--
     <ListView x:Name="ItemListview" BackgroundColor="gray" ItemTapped="OnClickedItem" SeparatorColor="Black"></ListView>
+    -->
 </ContentPage>
