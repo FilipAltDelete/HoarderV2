@@ -34,7 +34,7 @@ namespace HoarderApp.API
                     userInDb = JsonConvert.DeserializeObject<AccountDetails>(content);
                 }
             }
-            catch (Exception ex) { Debug.WriteLine("\tERROR {0}", ex.Message); }
+            catch (Exception ex) { Debug.WriteLine("\tERROR {Sign in error}", ex.Message); }
             return userInDb;
         }
 
@@ -52,7 +52,7 @@ namespace HoarderApp.API
 
                 }
             }
-            catch (Exception ex) { Debug.WriteLine("\tERROR {0}", ex.Message); }
+            catch (Exception ex) { Debug.WriteLine("\tERROR {Can't get collections from backend}", ex.Message); }
             return col;
 
         }
@@ -73,7 +73,7 @@ namespace HoarderApp.API
                 }
                 
             }
-            catch (Exception ex) { Debug.WriteLine("\tERROR {0}", ex.Message); }
+            catch (Exception ex) { Debug.WriteLine("\tERROR {Can't get items from backend}", ex.Message); }
             return items;
         }
 
@@ -93,7 +93,7 @@ namespace HoarderApp.API
                 }
 
             }
-            catch (Exception ex) { Debug.WriteLine("\tERROR {0}", ex.Message); }
+            catch (Exception ex) { Debug.WriteLine("\tERROR {Can't get item specific images from backend}", ex.Message); }
             return items;
         }
         
@@ -113,7 +113,7 @@ namespace HoarderApp.API
                 }
 
             }
-            catch (Exception ex) { Debug.WriteLine("\tERROR {0}", ex.Message); }
+            catch (Exception ex) { Debug.WriteLine("\tERROR {Can't get collection specific item images from backend}", ex.Message); }
             return images;
         }
 
@@ -131,7 +131,7 @@ namespace HoarderApp.API
                     userInDb = JsonConvert.DeserializeObject<AccountDetails>(content);
                 }
                 
-            }catch(Exception ex) { Debug.WriteLine("\tERROR {0}", ex.Message); }
+            }catch(Exception ex) { Debug.WriteLine("\tERROR {Can't get user from backend}", ex.Message); }
             return userInDb;
         }
         public Task<HttpResponseMessage> PostNewColldectionToDB(CollectionDTO collection)
