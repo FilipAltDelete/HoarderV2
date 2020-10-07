@@ -6,6 +6,7 @@ namespace HoarderApp.API
     {
         //public static string apiURLLocal = "http://10.0.0.6:5000/api/";
         public static string apiURLLocal = "http://localhost:5000/api/";
+        public static AccountDetails User;
 
     }
 }
