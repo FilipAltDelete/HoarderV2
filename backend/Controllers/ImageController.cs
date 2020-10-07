@@ -89,17 +89,22 @@ namespace backend.Controllers
                 Image im = new Image();
 
                 im = await _context.Images.Where(i => i.ItemId == item.Id).FirstOrDefaultAsync();
-                imageDataFromDB.Add(im);
+                if (im == null)
+                {
+                    imageURLS.Add("https://www.gardeningknowhow.com/wp-content/uploads/2010/02/iStock-524907632.jpg");
+                }
+                else
+                {
+                    imageDataFromDB.Add(im);
+                }
                 Console.WriteLine("\nDEBUG ITEM  : " + item.ItemName);
-                Console.WriteLine("\nDEBUG IMAGE : " + im.Id);
+                //Console.WriteLine("\nDEBUG IMAGE : " + im.Id);
             }
             Console.WriteLine();
             foreach (var image in imageDataFromDB)
             {
-
                 imageURLS.Add("http://localhost:5000/api/Image/" + image.ItemId + "/" + image.Id);
             }
-
 
             return imageURLS;
         }
@@ -117,10 +122,13 @@ namespace backend.Controllers
             }
             List<string> imageUrls = new List<string>();
             //http://localhost:5000/api/Image/itemid/1
+
             foreach (var image in imageDataFromDB)
             {
                 imageUrls.Add("http://localhost:5000/api/Image/" + image.ItemId + "/" + image.Id);
             }
+
+
 
             return imageUrls;
         }
