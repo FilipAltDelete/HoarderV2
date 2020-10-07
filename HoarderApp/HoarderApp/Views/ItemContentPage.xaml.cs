@@ -59,5 +59,8 @@ namespace HoarderApp.Views
             await Navigation.PushAsync(new EditItemPage(CurrentItem, CurrentCollection, SignedInUser));
         }
 
+
+        
+
     }
 }

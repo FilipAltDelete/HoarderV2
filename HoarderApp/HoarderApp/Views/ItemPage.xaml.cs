@@ -42,5 +42,6 @@ namespace HoarderApp.Views
         {
             await Navigation.PushAsync(new CreateItemPage(SignedInUser, CurrentCollection));
         }
+
     }
 }

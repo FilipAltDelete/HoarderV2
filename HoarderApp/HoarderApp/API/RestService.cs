@@ -6,7 +6,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using HoarderApp.Models;
-
+using System.Text;
 namespace HoarderApp.API
 {
     public class RestService
@@ -133,6 +133,24 @@ namespace HoarderApp.API
                 
             }catch(Exception ex) { Debug.WriteLine("\tERROR {0}", ex.Message); }
             return userInDb;
+        }
+        public Task<HttpResponseMessage> PostNewColldectionToDB(CollectionDTO collection)
+        {
+            //localUri
+            string json = JsonConvert.SerializeObject(collection, Formatting.Indented);
+            HttpClient httpClient = new HttpClient();     
+            HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                
+            return _client.PostAsync(localUri+"UserCollections", content);
+        }
+        public Task<HttpResponseMessage> PostNewItemToDB(ItemDTO item)
+        {
+            //localUri
+            string json = JsonConvert.SerializeObject(item, Formatting.Indented);
+            HttpClient httpClient = new HttpClient();
+            HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            return _client.PostAsync(localUri + "item", content);
         }
     }
 }
