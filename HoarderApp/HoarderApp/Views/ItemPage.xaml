@@ -37,6 +37,12 @@
                             Grid.Column="1"
                             Text="{Binding ItemName}"
                             VerticalOptions="End"/>
+                        <Button
+                            Grid.Column="2"
+                            TextColor="Black"
+                            Text="Delete"
+                            HorizontalOptions="End"
+                            Clicked="DeleteClickedItem"/>
                     </Grid>
 
                  </ViewCell>
