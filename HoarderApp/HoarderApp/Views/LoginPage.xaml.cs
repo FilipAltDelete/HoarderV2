@@ -27,10 +27,10 @@ namespace HoarderApp.Views
 
         async void SignInProcedure(object sender, EventArgs e)
         {
-            Constants.user = new AccountDetails(Entry_Username.Text, Entry_Password.Text);
+            Constants.User = new AccountDetails(Entry_Username.Text, Entry_Password.Text);
             RestService service = new RestService();
 
-            AccountDetails userFromDB = await service.SignIn(Constants.apiURL, Constants.user);
+            AccountDetails userFromDB = await service.SignIn(Constants.apiURLLocal, Constants.User);
 
             if(userFromDB == null)
             {
