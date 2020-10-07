@@ -10,6 +10,7 @@ namespace HoarderApp.Views
     {
         AccountDetails SignedInUser;
         CollectionDTO CurrentCollection;
+
         public ItemPage(CollectionDTO collection, AccountDetails signedInUser)
         {
             SignedInUser = signedInUser;
@@ -21,23 +22,9 @@ namespace HoarderApp.Views
         async void GetItemsDB(CollectionDTO collection)
         {
             Title = collection.CollectionName;
-            RestService service = new RestService();
-            List<ItemDTO> DTOitems = await service.GetItemsFromDB(collection);
-            List<string> imageURLS = await service.GetAllImages(collection);
-            List<Item> items = new List<Item>();
-            int i = 0;
-            foreach(var item in DTOitems)
-            {
-                Item it = new Item();
-                it.Id = item.Id;
-                it.ItemName = item.ItemName;
-                it.Description = item.Description;
-                it.AuctionURL = item.AuctionURL;
-                it.ForSale = item.ForSale;
-                it.ImageURL = imageURLS[i];
-                items.Add(it);
-                i++;
-            }
+
+            DataHandler data = new DataHandler();
+            List<Item> items = await data.GenerateItem(collection);
 
             ItemListview.ItemsSource = items;
             BindingContext = items;
@@ -45,11 +32,10 @@ namespace HoarderApp.Views
 
         async void OnClickedItem(object sender, EventArgs e)
         {
-            var myListView = (ListView)sender;
-            Item myItem = (Item)myListView.SelectedItem;
+            var listView = (ListView)sender;
+            Item selectedItem = (Item)listView.SelectedItem;
 
-
-            await Navigation.PushAsync(new ItemContentPage(myItem, CurrentCollection, SignedInUser));
+            await Navigation.PushAsync(new ItemContentPage(selectedItem, CurrentCollection, SignedInUser));
         }
 
         async void AddNewItem(object sender, EventArgs e)
