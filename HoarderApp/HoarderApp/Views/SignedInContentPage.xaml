@@ -12,7 +12,7 @@
     <StackLayout BackgroundColor="Black">
         
         <Button x:Name="collectionButton" Clicked="GoToCollection" Text="My Collections" FontSize="30" BackgroundColor="#312e31" TextColor="White" HeightRequest="100"  />
-        <Button Text="Searh for Users" FontSize="30" BackgroundColor="#312e31" TextColor="White" HeightRequest="100"></Button>
+        <Button Text="Searh for Users" Clicked ="GoToBrowseUsers" FontSize="30" BackgroundColor="#312e31" TextColor="White" HeightRequest="100"></Button>
         <Button Text="Account Settings" FontSize="30" BackgroundColor="#312e31" TextColor="White" HeightRequest="100"></Button>
         <Button Text="Hej och hå" FontSize="30" BackgroundColor="#312e31" TextColor="White" HeightRequest="100"></Button>
         
