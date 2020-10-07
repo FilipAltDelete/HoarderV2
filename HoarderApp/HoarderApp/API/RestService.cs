@@ -97,10 +97,10 @@ namespace HoarderApp.API
             return items;
         }
         
-        public async Task<List<string>> GetAllImages(CollectionDTO collection)
+        public async Task<List<ImageDTO>> GetAllImages(CollectionDTO collection)
         {
 
-            List<string> items = new List<string>();
+            List<ImageDTO> images = new List<ImageDTO>();
             try
             {
 
@@ -108,13 +108,13 @@ namespace HoarderApp.API
                 if (response.IsSuccessStatusCode)
                 {
                     string content = await response.Content.ReadAsStringAsync();
-                    items = JsonConvert.DeserializeObject<List<string>>(content);
+                    images = JsonConvert.DeserializeObject<List<ImageDTO>>(content);
 
                 }
 
             }
             catch (Exception ex) { Debug.WriteLine("\tERROR {0}", ex.Message); }
-            return items;
+            return images;
         }
 
         

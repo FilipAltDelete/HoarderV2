@@ -75,39 +75,37 @@ namespace backend.Controllers
 
             return File(b, "image/jpeg");
         }
-
-
         [HttpGet("collectionId/{colId}")]
-        public async Task<ActionResult<List<string>>> GetImagesFromCollection(int colId)
+        public async Task<ActionResult<List<Image>>> GetImagesFromCollection(int colId)
         {
             List<Item> itemDataFromDB = await _context.Items.Where(i => i.UserCollectionsId == colId).ToListAsync();
             List<Image> imageDataFromDB = new List<Image>();
-            List<string> imageURLS = new List<string>();
 
             foreach (var item in itemDataFromDB)
             {
+
                 Image im = new Image();
 
                 im = await _context.Images.Where(i => i.ItemId == item.Id).FirstOrDefaultAsync();
                 if (im == null)
                 {
-                    imageURLS.Add("https://www.gardeningknowhow.com/wp-content/uploads/2010/02/iStock-524907632.jpg");
+                    Image image = new Image();
+                    image.ItemId = item.Id;
+                    image.ImageURL = ("https://www.gardeningknowhow.com/wp-content/uploads/2010/02/iStock-524907632.jpg");
+                    imageDataFromDB.Add(image);
                 }
                 else
                 {
+                    im.ItemId = item.Id;
+                    im.ImageURL = "http://localhost:5000/api/Image/" + item.Id + "/" + im.Id;
                     imageDataFromDB.Add(im);
                 }
-                Console.WriteLine("\nDEBUG ITEM  : " + item.ItemName);
-                //Console.WriteLine("\nDEBUG IMAGE : " + im.Id);
-            }
-            Console.WriteLine();
-            foreach (var image in imageDataFromDB)
-            {
-                imageURLS.Add("http://localhost:5000/api/Image/" + image.ItemId + "/" + image.Id);
+
             }
 
-            return imageURLS;
+            return imageDataFromDB;
         }
+
 
         [HttpGet("Item/{itemId}")]
         public async Task<ActionResult<List<string>>> GetImageFromItemId(int itemId)

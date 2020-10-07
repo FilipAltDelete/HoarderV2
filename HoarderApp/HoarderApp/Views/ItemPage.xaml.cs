@@ -38,10 +38,17 @@ namespace HoarderApp.Views
             await Navigation.PushAsync(new ItemContentPage(selectedItem, CurrentCollection, SignedInUser));
         }
 
+        void DeleteClickedItem(object sender, EventArgs e)
+        {
+            var listView = (ListView)sender;
+            Item selectedItem = (Item)listView.SelectedItem;
+
+            Console.WriteLine("asd");
+        }
+
         async void AddNewItem(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new CreateItemPage(SignedInUser, CurrentCollection));
         }
-
     }
 }
