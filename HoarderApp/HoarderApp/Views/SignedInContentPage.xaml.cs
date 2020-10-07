@@ -24,5 +24,9 @@ namespace HoarderApp.Views
         {
             await Navigation.PushAsync(new CollectionPage(User) );
         }
+        async void GoToBrowseUsers(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new BrowseUsers(User));
+        }
     }
 }

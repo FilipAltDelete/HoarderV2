@@ -152,5 +152,23 @@ namespace HoarderApp.API
 
             return _client.PostAsync(localUri + "item", content);
         }
+        public async Task<List<UserProfile>> GetUsers(string uri, AccountDetails user)
+        {
+
+            List<UserProfile> usr = new List<UserProfile>();
+            try
+            {
+                HttpResponseMessage response = await _client.GetAsync(localUri + "UserProfile/");
+                if (response.IsSuccessStatusCode)
+                {
+                    string content = await response.Content.ReadAsStringAsync();
+                    usr = JsonConvert.DeserializeObject<List<UserProfile>>(content);
+
+                }
+            }
+            catch (Exception ex) { Debug.WriteLine("\tERROR {0}", ex.Message); }
+            return usr;
+
+        }
     }
 }

@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="HoarderApp.Views.BrowseUsers">
+     <ContentPage.ToolbarItems>
+    <ToolbarItem >
+
+    </ToolbarItem>
+</ContentPage.ToolbarItems>
+
+    <ListView x:Name="UserListView" BackgroundColor="gray" SeparatorColor="Black" ItemTapped="OnClickedUser" ItemsSource="{Binding users}">
+
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <Grid Padding="3" RowSpacing="3" ColumnSpacing="3">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        
+                        <Label
+                            Grid.Column="1"
+                            Text="{Binding ProfileName}"
+                            VerticalOptions="End"/>
+                    </Grid>
+
+                 </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+
+
+       
+
+
+
+
+
+
+    </ListView>
+
+   
+</ContentPage>
