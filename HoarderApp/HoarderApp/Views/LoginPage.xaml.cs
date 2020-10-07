@@ -22,6 +22,7 @@ namespace HoarderApp.Views
 
             Entry_Username.Completed += (s, e) => Entry_Password.Focus();
             Entry_Password.Completed += (s, e) => SignInProcedure(s, e);
+            //Console.WriteLine(Entry_Username.Text);
 
         }
 
