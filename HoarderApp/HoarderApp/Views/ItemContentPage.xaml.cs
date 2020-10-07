@@ -11,9 +11,13 @@ namespace HoarderApp.Views
         CollectionDTO CurrentCollection;
         Item CurrentItem;
         AccountDetails SignedInUser;
+        List<string> images;
+        int imageIndex;
+
         public ItemContentPage(Item currentItem, CollectionDTO currentCollection, AccountDetails signedInUser)
         {
-
+            images = new List<string>();
+            imageIndex = 0;
             SignedInUser = signedInUser;
             CurrentCollection = currentCollection;
             CurrentItem = currentItem;
@@ -26,7 +30,7 @@ namespace HoarderApp.Views
         async void GetImagesFromDB(Item currentItem)
         {
             RestService service = new RestService();
-            List<string> images = await service.GetImages(currentItem);
+            images = await service.GetImages(currentItem);
 
             if(images.Count == 0)
             {
@@ -37,6 +41,17 @@ namespace HoarderApp.Views
                 ItemImage.Source = images[0];
 
             }
+        }
+
+        void NextPicture(object sender, EventArgs e)
+        {
+            int imageMaxAmount = images.Count;
+            imageIndex++;
+            if(imageIndex == imageMaxAmount)
+            {
+                imageIndex = 0;
+            }
+            ItemImage.Source = images[imageIndex];
         }
 
         async void EditItem(object sender, EventArgs e)

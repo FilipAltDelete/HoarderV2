@@ -12,7 +12,7 @@
 
     <StackLayout BackgroundColor="gray">
         <Image x:Name="ItemImage" HeightRequest="600"></Image>
-
+        <Button x:Name="NextImageButton" FontSize="15" Text="Next Image" BackgroundColor="#312e31" TextColor="White" WidthRequest="50" HeightRequest="50" Clicked="NextPicture"/>
         <Label x:Name="ItemName" Padding="3"></Label>
         <Label x:Name="ItemDesc" Padding="3"></Label>
 
