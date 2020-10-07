@@ -34,23 +34,19 @@ namespace HoarderApp.Views
 
             if(images.Count == 0)
             {
-                ItemImage.Source = "https://www.gardeningknowhow.com/wp-content/uploads/2010/02/iStock-524907632.jpg";
-            }
-            else
-            {
+                images.Add("https://www.gardeningknowhow.com/wp-content/uploads/2010/02/iStock-524907632.jpg");
                 ItemImage.Source = images[0];
-
             }
+            else{ ItemImage.Source = images[0]; }
         }
 
         void NextPicture(object sender, EventArgs e)
         {
             int imageMaxAmount = images.Count;
             imageIndex++;
-            if(imageIndex == imageMaxAmount)
-            {
-                imageIndex = 0;
-            }
+
+            if (imageIndex == imageMaxAmount) { imageIndex = 0; }
+
             ItemImage.Source = images[imageIndex];
         }
 
