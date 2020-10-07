@@ -12,6 +12,7 @@ namespace HoarderApp.API
     public class RestService
     {
         HttpClient _client;
+        string localUri = Constants.apiURLLocal;
         
 
         public RestService()
@@ -22,7 +23,6 @@ namespace HoarderApp.API
         public async Task<AccountDetails> SignIn(string uri, AccountDetails attempt)
         {
             //string debugURL = "http://10.0.0.6:5000/api/accountdetails/Petar/123";
-            string localUri = Constants.apiURLLocal;
             AccountDetails userInDb = null;
             try
             {
@@ -40,7 +40,6 @@ namespace HoarderApp.API
 
         public async Task<List<CollectionDTO>> GetCollections(string uri, AccountDetails user)
         {
-            string localUri = Constants.apiURLLocal;
 
             List<CollectionDTO> col = new List<CollectionDTO>();
             try
@@ -60,7 +59,6 @@ namespace HoarderApp.API
 
         public async Task<List<ItemDTO>>GetItemsFromDB(CollectionDTO collection)
         {
-            string localUri = Constants.apiURLLocal;
 
             List<ItemDTO> items = new List<ItemDTO>();
             try
@@ -81,7 +79,6 @@ namespace HoarderApp.API
 
         public async Task<List<string>> GetImages(Item item)
         {
-            string localUri = Constants.apiURLLocal;
 
             List<string> items = new List<string>();
             try
@@ -102,7 +99,6 @@ namespace HoarderApp.API
         
         public async Task<List<string>> GetAllImages(CollectionDTO collection)
         {
-            string localUri = Constants.apiURLLocal;
 
             List<string> items = new List<string>();
             try

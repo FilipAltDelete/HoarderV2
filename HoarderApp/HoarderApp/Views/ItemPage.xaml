@@ -25,7 +25,6 @@
                         </Grid.ColumnDefinitions>
 
                         <Image
-
                             HeightRequest="35"
                             HorizontalOptions="CenterAndExpand"
                             VerticalOptions="CenterAndExpand"
@@ -33,14 +32,12 @@
                             WidthRequest="37"
                             Grid.RowSpan="2"
                             Source="{Binding ImageURL}"/>
-                        <Label Grid.Column="1"
-                               Text="{Binding ItemName}"
-                               VerticalOptions="End"/>
 
-
-
+                        <Label
+                            Grid.Column="1"
+                            Text="{Binding ItemName}"
+                            VerticalOptions="End"/>
                     </Grid>
-
 
                  </ViewCell>
             </DataTemplate>
