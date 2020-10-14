@@ -1,5 +1,5 @@
-using System;
 using System.Collections.Generic;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
@@ -101,12 +101,31 @@ namespace backend.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<AccountDetails>> PostAccountDetails(AccountDetails accountDetails)
+        public async Task<ActionResult<AccountDetails>> PostAccountDetails(NewUser newUser)
         {
-            _context.AccountDetails.Add(accountDetails);
+            AccountDetails newAccountDetails = new AccountDetails();
+            newAccountDetails.Username = newUser.Username;
+            newAccountDetails.Password = newUser.Password;
+            newAccountDetails.Email = newUser.Email;
+
+            _context.AccountDetails.Add(newAccountDetails);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetAccountDetails", new { id = accountDetails.Id }, accountDetails);
+
+            var nad = await _context.AccountDetails.Where(a => a.Username == newUser.Username).FirstOrDefaultAsync();
+            //await _context.AccountDetails.Where(a => a.Username == newUser.Username).FirstAsync();
+
+            UserProfile newUserProfile = new UserProfile();
+            newUserProfile.AccountDetailsId = nad.Id;
+            newUserProfile.Location = newUser.Location;
+            newUserProfile.Contact = newUser.Contact;
+            newUserProfile.ProfileName = newUser.ProfileName;
+
+            _context.UserProfiles.Add(newUserProfile);
+
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetAccountDetails", new { id = newAccountDetails.Id }, newAccountDetails);
         }
 
         // DELETE: api/AccountDetails/5
