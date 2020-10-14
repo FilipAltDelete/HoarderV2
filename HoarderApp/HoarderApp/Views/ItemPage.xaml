@@ -41,10 +41,12 @@
 
                         <Button
                             Grid.Column="2"
+                            Clicked="DeleteClickedItem"
+                            CommandParameter="{Binding Id}"
                             TextColor="Black"
                             Text="Delete"
-                            HorizontalOptions="End"
-                            Clicked="DeleteClickedItem"/>
+                            HorizontalOptions="End"/>
+
                     </Grid>
 
                  </ViewCell>

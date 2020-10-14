@@ -9,5 +9,39 @@
                  Clicked="AddNewCollection"/>
 </ContentPage.ToolbarItems>
 
-    <ListView BackgroundColor="gray" SeparatorColor="Black" ItemTapped="ClickedOnCollection" ItemsSource="{Binding}"></ListView>
+    <ListView x:Name="CollectionListView" BackgroundColor="gray" SeparatorColor="Black" ItemTapped="ClickedOnCollection" ItemsSource="{Binding collections}">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <Grid Padding="3" RowSpacing="3" ColumnSpacing="3">
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+
+                        <Label
+                            Grid.Column="1"
+                            Text="{Binding CollectionName}"
+                            VerticalOptions="End"/>
+
+                        <Button
+                            Grid.Column="2"
+                            CommandParameter="{Binding Id}"
+                            Clicked="DeleteClickedCollection"
+                            TextColor="Black"
+                            Text="Delete"
+                            HorizontalOptions="End"/>
+
+                        </Grid>
+
+                 </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
 </ContentPage>
