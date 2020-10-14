@@ -22,7 +22,7 @@ namespace HoarderApp.Views
         async void GetCollectionsFromDB(AccountDetails user)
         {
             RestService service = new RestService();
-            List<CollectionDTO> collections = await service.GetCollections(Constants.apiURLLocal, user);
+            List<CollectionDTO> collections = await service.GetCollections(user);
             BindingContext = collections;
 
             

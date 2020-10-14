@@ -4,17 +4,18 @@
              x:Class="HoarderApp.Views.ItemPage">
 
     <ContentPage.ToolbarItems>
-    <ToolbarItem Text="Add+"
-                 Order="Primary"
-                 Priority="0"
-                 Clicked="AddNewItem"/>
-</ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add+"
+                     Order="Primary"
+                     Priority="0"
+                     Clicked="AddNewItem"/>
+    </ContentPage.ToolbarItems>
 
     <ListView x:Name="ItemListview" ItemsSource="{Binding items}" BackgroundColor="gray" ItemTapped="OnClickedItem" SeparatorColor="Black">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
                     <Grid Padding="3" RowSpacing="3" ColumnSpacing="3">
+
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="*"/>
@@ -37,12 +38,13 @@
                             Grid.Column="1"
                             Text="{Binding ItemName}"
                             VerticalOptions="End"/>
+
                         <Button
                             Grid.Column="2"
                             TextColor="Black"
                             Text="Delete"
                             HorizontalOptions="End"
-                            Clicked="DeleteClickedItem"/>
+                            />
                     </Grid>
 
                  </ViewCell>
@@ -51,7 +53,4 @@
 
     </ListView>
 
-    <!--
-    <ListView x:Name="ItemListview" BackgroundColor="gray" ItemTapped="OnClickedItem" SeparatorColor="Black"></ListView>
-    -->
 </ContentPage>
