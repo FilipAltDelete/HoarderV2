@@ -91,6 +91,16 @@ namespace backend.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<Item>> DeleteItem(int id)
         {
+            var imagesOnItem = await _context.Images.Where(i => i.ItemId == id).ToListAsync();
+
+            foreach (var image in imagesOnItem)
+            {
+                if (image != null)
+                {
+                    _context.Images.Remove(image);
+                }
+            }
+
             var item = await _context.Items.FindAsync(id);
             if (item == null)
             {

@@ -9,8 +9,10 @@ namespace HoarderApp.Views
     {
         AccountDetails SignedInUser;
         CollectionDTO CurrentCollection;
+        RestService service;
         public CreateItemPage(AccountDetails signedInUser,CollectionDTO currentCollection)
         {
+            service = new RestService();
             SignedInUser = signedInUser;
             CurrentCollection = currentCollection;
             SignedInUser = signedInUser;
@@ -18,7 +20,6 @@ namespace HoarderApp.Views
         }
         async void AddItem_Clicked(object sender, EventArgs e)
         {
-            RestService service = new RestService();
             ItemDTO newitem = new ItemDTO();
 
             newitem.ItemName = newItemName.Text;

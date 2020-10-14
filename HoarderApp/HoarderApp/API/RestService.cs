@@ -38,7 +38,7 @@ namespace HoarderApp.API
             return userInDb;
         }
 
-        public async Task<List<CollectionDTO>> GetCollections(string uri, AccountDetails user)
+        public async Task<List<CollectionDTO>> GetCollections(AccountDetails user)
         {
 
             List<CollectionDTO> col = new List<CollectionDTO>();
@@ -134,6 +134,14 @@ namespace HoarderApp.API
             }catch(Exception ex) { Debug.WriteLine("\tERROR {Can't get user from backend}", ex.Message); }
             return userInDb;
         }
+        public async void DeleteItem(int id)
+        {
+            
+           HttpResponseMessage response = await _client.DeleteAsync(localUri + "item/" + id);
+
+            Console.WriteLine(response);
+
+        }
         public Task<HttpResponseMessage> PostNewColldectionToDB(CollectionDTO collection)
         {
             //localUri
@@ -152,6 +160,7 @@ namespace HoarderApp.API
 
             return _client.PostAsync(localUri + "item", content);
         }
+
         public async Task<List<UserProfile>> GetUsers(string uri, AccountDetails user)
         {
 
