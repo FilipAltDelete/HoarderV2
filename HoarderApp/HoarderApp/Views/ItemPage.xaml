@@ -44,7 +44,7 @@
                             TextColor="Black"
                             Text="Delete"
                             HorizontalOptions="End"
-                            />
+                            Clicked="DeleteClickedItem"/>
                     </Grid>
 
                  </ViewCell>

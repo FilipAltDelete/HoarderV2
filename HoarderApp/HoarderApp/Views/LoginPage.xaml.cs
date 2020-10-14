@@ -51,5 +51,10 @@ namespace HoarderApp.Views
             Application.Current.MainPage = new NavigationPage(new SignedInContentPage(signedInUser));
             //Navigation.PushModalAsync(new SignedInContentPage(signedInUser));
         }
+
+        private void GoToRegisterPage(object sender, EventArgs e)
+        {
+            Application.Current.MainPage = new NavigationPage(new RegisterUserPage());
+        }
     }
 }

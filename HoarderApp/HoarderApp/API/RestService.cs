@@ -38,6 +38,15 @@ namespace HoarderApp.API
             return userInDb;
         }
 
+        public async Task<HttpResponseMessage> CreateNewUser(NewUser newUser)
+        {
+            string json = JsonConvert.SerializeObject(newUser, Formatting.Indented);
+            HttpClient httpClient = new HttpClient();
+            HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            return await _client.PostAsync(localUri + "AccountDetails", content);
+        }
+
         public async Task<List<CollectionDTO>> GetCollections(AccountDetails user)
         {
 

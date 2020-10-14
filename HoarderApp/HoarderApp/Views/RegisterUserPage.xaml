@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="HoarderApp.Views.LoginPage"
+             x:Class="HoarderApp.Views.RegisterUserPage"
              >
     <StackLayout x:Name="MasterLayout">
 
@@ -17,12 +17,21 @@
                 </OnIdiom>
             </StackLayout.Padding>
 
-            <Label x:Name="Lb1_Username" Text="Username"/>
+            <Label x:Name="Lb_Username" Text="Username"/>
             <Entry x:Name="Entry_Username" Placeholder="Username"/>
-            <Label x:Name="Lb1_Password" Text="Password"/>
+            <Label x:Name="Lb_Password" Text="Password"/>
             <Entry x:Name="Entry_Password" Placeholder="Password" IsPassword="True"/>
-            <Button x:Name="Btn_Signin" Text="Sign In" Clicked="SignInProcedure"/>
-            <Button Text="Register" Clicked="GoToRegisterPage"/>
+            <Label x:Name="Lb_Password2" Text="Verify Password"/>
+            <Entry x:Name="Entry_Password2" Placeholder="Password" IsPassword="True"/>
+            <Label x:Name="Lb_Email" Text="Email"/>
+            <Entry x:Name="Entry_Email" Placeholder="Email"/>
+            <Label x:Name="Lb_Location" Text="Location"/>
+            <Entry x:Name="Entry_Location" Placeholder="Location"/>
+            <Label x:Name="Lb_Contact" Text="Contact"/>
+            <Entry x:Name="Entry_Contact" Placeholder="Contact"/>
+            <Label x:Name="Lb_ProfileName" Text="Profile Name"/>
+            <Entry x:Name="Entry_ProfileName" Placeholder="Profile Name"/>
+            <Button x:Name="Btn_Register" Text="Register" Clicked="RegisterProcedure"/>
         </StackLayout>
     </StackLayout>
 </ContentPage>
