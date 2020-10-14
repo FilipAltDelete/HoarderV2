@@ -45,7 +45,7 @@ namespace HoarderApp.Views
             Button button = (Button)sender;
             int id = Convert.ToInt32(button.CommandParameter.ToString());
 
-            var answer = await DisplayAlert("system Message", "Do you wan't to exit the App?", "Yes", "No");
+            var answer = await DisplayAlert("Delete Item", "Are you sure?", "Yes", "No");
             if (answer)
             {
                 service.DeleteItem(id);

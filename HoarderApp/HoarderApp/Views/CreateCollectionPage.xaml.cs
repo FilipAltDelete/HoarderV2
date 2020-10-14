@@ -27,7 +27,9 @@ namespace HoarderApp.Views
             if (newCollection != null||newCollection.CollectionName!="")
             {
                 service.PostNewColldectionToDB(newCollection).Wait();
-                await Navigation.PushAsync(new CollectionPage(SignedInUser));
+                var vUpdatedPage = new CollectionPage(SignedInUser);
+                Navigation.InsertPageBefore(vUpdatedPage, this);
+                await Navigation.PopAsync();
 
             }
 

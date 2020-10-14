@@ -28,10 +28,12 @@ namespace HoarderApp.Views
             if (newitem != null || newitem.ItemName != "")
             {
                 service.PostNewItemToDB(newitem).Wait();
-                await Navigation.PushAsync(new CollectionPage(SignedInUser));
+
+                var vUpdatedPage = new ItemPage(CurrentCollection, SignedInUser);
+                Navigation.InsertPageBefore(vUpdatedPage, this);
+                await Navigation.PopAsync();
 
             }
-
 
         }
     }

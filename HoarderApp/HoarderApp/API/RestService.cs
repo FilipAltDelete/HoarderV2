@@ -13,7 +13,7 @@ namespace HoarderApp.API
     {
         HttpClient _client;
         string localUri = Constants.apiURLLocal;
-        
+
 
         public RestService()
         {
@@ -41,7 +41,6 @@ namespace HoarderApp.API
         public async Task<HttpResponseMessage> CreateNewUser(NewUser newUser)
         {
             string json = JsonConvert.SerializeObject(newUser, Formatting.Indented);
-            HttpClient httpClient = new HttpClient();
             HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
 
             return await _client.PostAsync(localUri + "AccountDetails", content);
@@ -66,13 +65,13 @@ namespace HoarderApp.API
 
         }
 
-        public async Task<List<ItemDTO>>GetItemsFromDB(CollectionDTO collection)
+        public async Task<List<ItemDTO>> GetItemsFromDB(CollectionDTO collection)
         {
 
             List<ItemDTO> items = new List<ItemDTO>();
             try
             {
-                
+
                 HttpResponseMessage response = await _client.GetAsync(localUri + "Item/collection/" + collection.Id);
                 if (response.IsSuccessStatusCode)
                 {
@@ -80,7 +79,7 @@ namespace HoarderApp.API
                     items = JsonConvert.DeserializeObject<List<ItemDTO>>(content);
 
                 }
-                
+
             }
             catch (Exception ex) { Debug.WriteLine("\tERROR {Can't get items from backend}", ex.Message); }
             return items;
@@ -105,7 +104,7 @@ namespace HoarderApp.API
             catch (Exception ex) { Debug.WriteLine("\tERROR {Can't get item specific images from backend}", ex.Message); }
             return items;
         }
-        
+
         public async Task<List<ImageDTO>> GetAllImages(CollectionDTO collection)
         {
 
@@ -126,7 +125,7 @@ namespace HoarderApp.API
             return images;
         }
 
-        
+
 
         public async Task<AccountDetails> GetUserFromDB(string uri)
         {
@@ -139,32 +138,26 @@ namespace HoarderApp.API
                     string content = await response.Content.ReadAsStringAsync();
                     userInDb = JsonConvert.DeserializeObject<AccountDetails>(content);
                 }
-                
-            }catch(Exception ex) { Debug.WriteLine("\tERROR {Can't get user from backend}", ex.Message); }
+
+            } catch (Exception ex) { Debug.WriteLine("\tERROR {Can't get user from backend}", ex.Message); }
             return userInDb;
         }
-        public async void DeleteItem(int id)
-        {
-           await _client.DeleteAsync(localUri + "item/" + id);
-        }
-        public async void DeleteCollection(int id)
-        {
-           await _client.DeleteAsync(localUri + "UserCollections/" + id);
-        }
+
+        public async void DeleteItem(int id) { await _client.DeleteAsync(localUri + "item/" + id); }
+        public async void DeleteCollection(int id) { await _client.DeleteAsync(localUri + "UserCollections/" + id); }
+
+
         public Task<HttpResponseMessage> PostNewColldectionToDB(CollectionDTO collection)
         {
-            //localUri
             string json = JsonConvert.SerializeObject(collection, Formatting.Indented);
-            HttpClient httpClient = new HttpClient();     
             HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
                 
             return _client.PostAsync(localUri+"UserCollections", content);
         }
+
         public Task<HttpResponseMessage> PostNewItemToDB(ItemDTO item)
         {
-            //localUri
             string json = JsonConvert.SerializeObject(item, Formatting.Indented);
-            HttpClient httpClient = new HttpClient();
             HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
 
             return _client.PostAsync(localUri + "item", content);
