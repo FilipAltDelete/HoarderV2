@@ -6,7 +6,12 @@
         <StackLayout>
                 <Label Text="Add New Item" HorizontalTextAlignment="Center" FontSize="Large" FontAttributes="Bold"/>
                 <Entry x:Name="newItemName"  Placeholder="Item Name"/>
-                <Button   Text="Add" Clicked="AddItem_Clicked" FontSize="30" BackgroundColor="#312e31" TextColor="White" HeightRequest="100"/>
+                <Button   Text="Add"
+                          Clicked="AddItem_Clicked"
+                          FontSize="30"
+                          BackgroundColor="#312e31"
+                          TextColor="White"
+                          HeightRequest="100"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

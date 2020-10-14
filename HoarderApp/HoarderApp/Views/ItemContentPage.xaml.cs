@@ -52,27 +52,10 @@ namespace HoarderApp.Views
             ItemImage.Source = images[imageIndex];
         }
 
-        async void DeleteClickedItem(object sender, EventArgs e)
-        {
-            
-            service.DeleteItem(CurrentItem.Id);
-            Console.WriteLine("asd");
-
-            for (var counter = 1; counter < 2; counter++)
-            {
-                Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 2]);
-            }
-            await Navigation.PopAsync();
-
-        }
-
         async void EditItem(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new EditItemPage(CurrentItem, CurrentCollection, SignedInUser));
         }
-
-
-        
 
     }
 }

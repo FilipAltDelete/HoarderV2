@@ -145,11 +145,11 @@ namespace HoarderApp.API
         }
         public async void DeleteItem(int id)
         {
-            
-           HttpResponseMessage response = await _client.DeleteAsync(localUri + "item/" + id);
-
-            Console.WriteLine(response);
-
+           await _client.DeleteAsync(localUri + "item/" + id);
+        }
+        public async void DeleteCollection(int id)
+        {
+           await _client.DeleteAsync(localUri + "UserCollections/" + id);
         }
         public Task<HttpResponseMessage> PostNewColldectionToDB(CollectionDTO collection)
         {

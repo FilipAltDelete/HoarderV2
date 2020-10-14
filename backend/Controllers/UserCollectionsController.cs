@@ -105,6 +105,7 @@ namespace backend.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<UserCollections>> DeleteUserCollections(int id)
         {
+
             var userCollections = await _context.UserCollections.FindAsync(id);
             if (userCollections == null)
             {

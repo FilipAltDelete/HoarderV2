@@ -27,7 +27,7 @@ namespace HoarderApp.Views
 
             DataHandler data = new DataHandler();
             List<Item> items = await data.GenerateItem(collection);
-
+            
             ItemListview.ItemsSource = items;
             BindingContext = items;
         }
@@ -40,14 +40,21 @@ namespace HoarderApp.Views
             await Navigation.PushAsync(new ItemContentPage(selectedItem, CurrentCollection, SignedInUser));
         }
         
-        void DeleteClickedItem(object sender, EventArgs e)
-        {
-            var listView = (ListView)sender;
-            Item selectedItem = (Item)listView.SelectedItem;
+         async void DeleteClickedItem(object sender, EventArgs e)
+         {
+            Button button = (Button)sender;
+            int id = Convert.ToInt32(button.CommandParameter.ToString());
 
-            service.DeleteItem(selectedItem.Id);
-            Console.WriteLine("asd");
-        }
+            var answer = await DisplayAlert("system Message", "Do you wan't to exit the App?", "Yes", "No");
+            if (answer)
+            {
+                service.DeleteItem(id);
+                var vUpdatedPage = new ItemPage(CurrentCollection, SignedInUser);
+                Navigation.InsertPageBefore(vUpdatedPage, this);
+                await Navigation.PopAsync();
+            }
+            
+         }
         
         async void AddNewItem(object sender, EventArgs e)
         {
